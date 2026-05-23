@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Job Booking (no date)</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Arkwright’s Freight Ltd – Job Booking</h1>
+</header>
+<main>
+<form id="bookingForm">
+  <input type="hidden" name="Company" value="Arkwright’s Freight Ltd" />
+  <label for="destination">Company Destination</label>
+  <input type="text" id="destination" name="Destination" required />
+
+  <label for="address">Address (optional)</label>
+  <input type="text" id="address" name="Address" />
+
+  <label for="description">Description</label>
+  <textarea id="description" name="Description" required></textarea>
+
+  <label>Pick‑up / Drop‑off</label>
+  <select id="type" name="Type" required>
+    <option value="pick-up">Pick‑up</option>
+    <option value="drop-off">Drop‑off</option>
+  </select>
+
+  <label for="phone">Phone (optional)</label>
+  <input type="tel" id="phone" name="Phone" />
+
+  <label for="attachment">Attachments</label>
+  <input type="file" id="attachment" name="Attachment" />
+
+  <button type="submit">Book Job</button>
+</form>
+<section id="status"></section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
