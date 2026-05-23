@@ -12,40 +12,51 @@ const companyName = companyInput ? companyInput.value : '';
 const statusEl = document.getElementById('status');
 
 // Auto‑fill today’s date and initialise the Mobiscroll date picker on page load
-// Ensure default Mobiscroll settings (theme)
 if (typeof mobiscroll !== 'undefined') {
   mobiscroll.settings = { theme: 'ios' };
 }
-function initDatePicker() {
+function initMobiscroll() {
   if (typeof mobiscroll !== 'undefined') {
+    // Date wheel
     mobiscroll.Datepicker('#date-picker', {
-      theme: 'ios',
-      display: 'inline', // inline spin‑wheel visible on page
+      display: 'inline',
       dateFormat: 'dd MM yy',
       defaultValue: new Date(),
-      dateWheels: [
-        ['dd'],
-        ['mm'],
-        ['yy']
-      ],
-      // When user selects a date, copy it into the hidden input for form submission
-      onSet: function (event, inst) {
-        const hidden = document.getElementById('date-value');
-        if (hidden) hidden.value = event.valueText; // formatted as defined by dateFormat
-      }
+      dateWheels: [ ['dd'], ['mm'], ['yy'] ]
+    });
+    // Pick‑up / Drop‑off wheel
+    mobiscroll.Select('#type-picker', {
+      display: 'inline',
+      placeholder: 'Pick‑up / Drop‑off',
+      data: [
+        { value: 'pick-up', text: 'Pick‑up' },
+        { value: 'drop-off', text: 'Drop‑off' }
+      ]
     });
   } else {
-    // Fallback to native date input (if we ever revert)
+    // Fallback: native inputs (will appear as regular controls)
     const dateInput = document.getElementById('date-picker');
-    if (dateInput) dateInput.valueAsDate = new Date();
+    if (dateInput) dateInput.type = 'date';
+    const typeInput = document.getElementById('type-picker');
+    if (typeInput) {
+      const select = document.createElement('select');
+      select.id = 'type-picker';
+      select.name = 'Type';
+      const opt1 = document.createElement('option');
+      opt1.value = 'pick-up'; opt1.text = 'Pick‑up';
+      const opt2 = document.createElement('option');
+      opt2.value = 'drop-off'; opt2.text = 'Drop‑off';
+      select.append(opt1, opt2);
+      typeInput.replaceWith(select);
+    }
   }
 }
 
 // Run after DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initDatePicker);
+  document.addEventListener('DOMContentLoaded', initMobiscroll);
 } else {
-  initDatePicker();
+  initMobiscroll();
 }
 
 form.addEventListener('submit', async e => {

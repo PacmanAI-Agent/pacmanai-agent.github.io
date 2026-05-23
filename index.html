@@ -6,7 +6,7 @@
 <title>Job Booking</title>
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mobiscroll/javascript@5.16.0/dist/css/mobiscroll.min.css">
 </head>
 <body>
 <header>
@@ -26,10 +26,7 @@
   <textarea id="description" name="Description" required></textarea>
 
   <label for="type-picker">Pick‑up / Drop‑off</label>
-  <select id="type-picker" name="Type" required>
-    <option value="pick-up">Pick‑up</option>
-    <option value="drop-off">Drop‑off</option>
-  </select>
+  <input type="text" id="type-picker" name="Type" required placeholder="Pick‑up / Drop‑off" />
 
   <label for="phone">Phone (optional)</label>
   <input type="tel" id="phone" name="Phone" />
@@ -44,6 +41,7 @@
 </form>
 <section id="status"></section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@mobiscroll/javascript@5.16.0/dist/js/mobiscroll.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
