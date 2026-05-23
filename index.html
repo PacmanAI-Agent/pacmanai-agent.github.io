@@ -6,7 +6,7 @@
 <title>Job Booking</title>
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mobiscroll/javascript@5.16.0/dist/css/mobiscroll.min.css">
+
 </head>
 <body>
 <header>
@@ -25,8 +25,11 @@
   <label for="description">Description</label>
   <textarea id="description" name="Description" required></textarea>
 
-  <!-- Pick‑up / Drop‑off scroll wheel -->
-  <input type="text" id="type-picker" name="Type" required placeholder="Pick‑up / Drop‑off" />
+  <label for="type-picker">Pick‑up / Drop‑off</label>
+  <select id="type-picker" name="Type" required>
+    <option value="pick-up">Pick‑up</option>
+    <option value="drop-off">Drop‑off</option>
+  </select>
 
   <label for="phone">Phone (optional)</label>
   <input type="tel" id="phone" name="Phone" />
@@ -34,43 +37,13 @@
   <label for="attachment">Attachments</label>
   <input type="file" id="attachment" name="Attachment" />
 
-  <!-- Date selector (scroll wheel) -->
-  <input type="text" id="date-picker" name="Date" required placeholder="Select date" />
+  <label for="date-picker">Date</label>
+  <input type="date" id="date-picker" name="Date" required />
 
   <button type="submit">Book Job</button>
 </form>
 <section id="status"></section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@mobiscroll/javascript@5.16.0/dist/js/mobiscroll.min.js"></script>
-<script>
-  // Set global Mobiscroll theme
-  mobiscroll.settings = { theme: 'ios' };
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Pick‑up / Drop‑off wheel
-    mobiscroll.Select('#type-picker', {
-      display: 'inline',
-      placeholder: 'Pick‑up / Drop‑off',
-      data: [
-        { value: 'pick-up', text: 'Pick‑up' },
-        { value: 'drop-off', text: 'Drop‑off' }
-      ]
-    });
-
-    // Date wheel
-    mobiscroll.Datepicker('#date-picker', {
-      display: 'inline',
-      dateFormat: 'dd MM yy',
-      defaultValue: new Date(),
-      dateWheels: [ ['dd'], ['mm'], ['yy'] ]
-    });
-
-    // Simple form handler placeholder
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('status').textContent = 'Form submitted.';
-    });
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
